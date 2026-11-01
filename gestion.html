@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gestion — On bloque</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#f6f3f0">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="legal gestion">
+  <a class="back" href="./">← Retour à l’appli</a>
+  <h1>Gestion</h1>
+
+  <form id="login" class="box" novalidate>
+    <label class="field"><span>Clé de gestion</span>
+      <input id="cle" type="password" autocomplete="current-password" required>
+    </label>
+    <p class="form-err" id="login-err" role="alert"></p>
+    <button class="btn dark" type="submit">Ouvrir</button>
+  </form>
+
+  <div id="zone" hidden>
+    <h2>Propositions à vérifier <span class="count" id="n-attente"></span></h2>
+    <p class="note">Ouvre le profil pour vérifier qu’il s’agit bien d’un compte public (RedList : personnalité, parti ou média d’extrême droite, jamais un particulier). Tu peux corriger le nom et le rôle avant d’ajouter.</p>
+    <div id="attente"></div>
+
+    <h2>Profils publics <span class="count" id="n-profils"></span></h2>
+    <p class="note">« Masquer » retire le pseudo du classement et le compte du #FollowBack.</p>
+    <div id="profils"></div>
+
+    <h2>Comptes ajoutés <span class="count" id="n-ajouts"></span></h2>
+    <div id="ajouts"></div>
+    <p><button class="btn ghost" id="logout" type="button">Fermer la gestion</button></p>
+  </div>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="gestion.js"></script>
+</body>
+</html>

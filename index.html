@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>On bloque l'extrême droite — comptes à bloquer et compteur</title>
+<meta name="description" content="Moins de visibilité pour l'extrême droite dans tes fils : bloque ses comptes publics, un à la fois. #onbloquelextremedroite">
+<meta name="theme-color" content="#f6f3f0">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" href="icons/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="icons/logo-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="On bloque">
+<meta property="og:title" content="On bloque l'extrême droite">
+<meta property="og:description" content="Bloque les comptes publics de l'extrême droite, toi-même, trois par jour. #onbloquelextremedroite">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://on-bloque-extreme-droite.vercel.app/">
+<meta property="og:image" content="https://on-bloque-extreme-droite.vercel.app/images/partage.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="1200">
+<meta property="og:image:alt" content="2027 — #OnBloqueLextremeDroite">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://on-bloque-extreme-droite.vercel.app/images/partage.jpg">
+<link rel="preload" href="fonts/dm-sans.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="splash" aria-hidden="true"><img src="images/ecran-lancement.webp" alt="" width="720" height="720"></div>
+<main>
+  <header class="top">
+    <a id="follow" class="follow" target="_blank" rel="noopener" hidden>
+      <span class="x-dot"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.12z"/></svg></span>
+      Suivre <b id="follow-handle"></b>
+    </a>
+    <div class="top-right">
+      <button id="me" class="chip-btn me-btn" title="Mon pseudo et mon code de sauvegarde">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
+        <span id="me-name">Pseudo</span>
+      </button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>On bloque<br><em>l’extrême droite.</em></h1>
+    <p class="lead">Moins de visibilité pour l’extrême droite dans tes fils&nbsp;: tu bloques ses comptes publics, un à la fois. Trois par jour suffisent, à ton rythme.</p>
+    <div class="dl" id="dl">
+      <button id="install" class="btn dark dl-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>
+        <span id="install-label">Télécharger l’appli</span>
+      </button>
+      <a class="btn don" href="https://www.onparticipe.fr/c/Iw8uvKSc" target="_blank" rel="noopener">♥ Faire un don</a>
+      <span class="dl-sub" id="dl-sub">Gratuite · sans inscription · pseudo facultatif</span>
+    </div>
+  </section>
+
+  <section class="live">
+    <div class="live-top">
+      <span class="pill-live"><i></i><span id="live-badge">TON COMPTEUR</span></span>
+      <span class="today-plus" id="today-plus"></span>
+    </div>
+    <div class="big" id="count">0</div>
+    <p class="live-label" id="live-label">blocages déclarés sur cet appareil</p>
+    <div class="live-bar"><div id="bar"></div></div>
+    <p class="live-next" id="next"></p>
+  </section>
+
+  <nav class="tabs" role="tablist" aria-label="Listes">
+    <button role="tab" id="tab-fb" data-tab="fb" aria-controls="panel-fb" aria-selected="true">#FollowBack</button>
+    <button role="tab" id="tab-green" data-tab="green" aria-controls="panel-green" aria-selected="false">GreenList</button>
+    <button role="tab" id="tab-red" data-tab="red" aria-controls="panel-red" aria-selected="false">RedList</button>
+  </nav>
+
+  <section class="panel panel-red" id="panel-red" role="tabpanel" aria-labelledby="tab-red" hidden>
+    <p class="panel-intro">Les comptes publics de l’extrême droite. Tu les bloques toi-même, sur ton réseau.</p>
+    <div class="nets" id="red-nets" role="tablist" aria-label="Réseau"></div>
+    <div class="cats" id="red-cats" role="tablist" aria-label="Catégorie"></div>
+    <div class="daily">
+      <p><b>Aujourd’hui : <span id="day">0</span> / <span id="goal">3</span></b></p>
+      <div class="daily-bar"><div id="day-bar"></div></div>
+    </div>
+    <div class="deck" id="red-deck"></div>
+    <p class="hint center">Glisse la carte à droite pour bloquer, à gauche pour passer. Sur ordinateur : flèches du clavier.</p>
+    <button class="btn cta" data-propose="red">+ Proposer un compte à bloquer</button>
+    <div class="board" id="red-board"></div>
+  </section>
+
+  <section class="panel panel-green" id="panel-green" role="tabpanel" aria-labelledby="tab-green" hidden>
+    <p class="panel-intro">Bloquer, c’est la moitié du travail. L’autre moitié&nbsp;: suivre et soutenir les comptes de gauche.</p>
+    <div class="nets" id="green-nets" role="tablist" aria-label="Réseau"></div>
+    <div class="cats" id="green-cats" role="tablist" aria-label="Catégorie"></div>
+    <div class="deck" id="green-deck"></div>
+    <p class="hint center">Glisse la carte à droite pour suivre, à gauche pour passer.</p>
+    <button class="btn cta" data-propose="green">+ Proposer un compte à suivre</button>
+    <div class="board" id="green-board"></div>
+  </section>
+
+  <section class="panel panel-fb" id="panel-fb" role="tabpanel" aria-labelledby="tab-fb">
+    <p class="panel-intro">Les membres de l’appli qui veulent se faire suivre. Tu les suis, ils te suivent en retour&nbsp;: on grandit ensemble.</p>
+    <div class="nets" id="fb-nets" role="tablist" aria-label="Réseau"></div>
+    <div class="deck" id="fb-deck"></div>
+    <p class="hint center">Glisse la carte à droite pour suivre, à gauche pour passer.</p>
+    <button class="btn cta" id="fb-cta">+ Ajouter mon compte</button>
+    <div class="board" id="fb-board"></div>
+  </section>
+
+  <section class="guide" id="guide">
+    <h2>En 3 gestes</h2>
+    <ol class="three">
+      <li><b>Ouvre le profil</b><span>Le bouton de la carte t’emmène sur la page du compte, sur son réseau.</span></li>
+      <li><b>Bloque ou suis, sur le réseau</b><span>Pour bloquer sur X ou Instagram&nbsp;: touche <i>•••</i> en haut à droite du profil, puis « Bloquer ».</span></li>
+      <li><b>Confirme ici</b><span>Reviens sur l’appli et réponds « Oui » : ton compteur monte d’un point.</span></li>
+    </ol>
+    <p class="note">L’appli ne bloque ni ne suit aucun compte à ta place, et ne se connecte à aucun de tes comptes. Le compteur commun et les classements additionnent ce que chacun déclare&nbsp;: ils ne peuvent pas vérifier.</p>
+  </section>
+
+  <div class="row actions-bas">
+    <button id="share" class="btn dark">Partager l’appli</button>
+    <button id="reset" class="btn ghost">Remettre à zéro</button>
+  </div>
+
+  <footer>Site militant indépendant, non affilié à un parti. #onbloquelextremedroite<br><a href="mentions-legales.html#regles">Les règles</a> · <a href="mentions-legales.html">Mentions légales et confidentialité</a></footer>
+</main>
+
+<dialog id="confirm">
+  <p class="dlg-title" id="confirm-q"></p>
+  <div class="dlg-actions">
+    <button class="btn ghost" id="confirm-no">Pas encore</button>
+    <button class="btn red" id="confirm-yes">Oui</button>
+  </div>
+</dialog>
+
+<dialog id="profil" class="form-dlg">
+  <form id="profil-form" novalidate>
+    <p class="dlg-title"><b id="profil-title">Choisis ton pseudo</b></p>
+    <p class="dlg-sub" id="profil-sub">Bravo pour ton premier geste&nbsp;! Avec un pseudo, tu entres dans le classement des meilleurs contributeurs.</p>
+    <label class="field"><span>Pseudo</span>
+      <input id="p-pseudo" name="pseudo" maxlength="24" autocomplete="nickname" autocapitalize="off" spellcheck="false" placeholder="Ex. Camille93" required>
+    </label>
+    <div class="field"><span>Ton compte, pour te faire suivre <i>(facultatif)</i></span>
+      <div class="field-row">
+        <select id="p-reseau" aria-label="Réseau social"></select>
+        <input id="p-handle" aria-label="Identifiant ou lien de ton compte" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="@toncompte ou lien">
+      </div>
+      <small>Avec ton compte, tu apparais dans le #FollowBack&nbsp;: les autres membres peuvent te suivre.</small>
+    </div>
+    <label class="check"><input type="checkbox" id="p-ok"><span>J’accepte que mon pseudo et mon compte soient affichés publiquement dans l’appli (ce qui montre mon engagement contre l’extrême droite). Je peux les supprimer à tout moment.</span></label>
+    <p class="form-err" id="p-err" role="alert"></p>
+    <div class="dlg-actions">
+      <button type="button" class="btn ghost" id="p-later">Plus tard</button>
+      <button type="submit" class="btn dark" id="p-save">Valider</button>
+    </div>
+    <p class="dlg-foot">
+      <button type="button" class="linkish" id="p-code">Code de sauvegarde</button>
+      <span id="p-delete-wrap"> · <button type="button" class="linkish" id="p-delete">Supprimer mon profil</button></span>
+    </p>
+  </form>
+</dialog>
+
+<dialog id="proposer" class="form-dlg">
+  <form id="prop-form" novalidate>
+    <p class="dlg-title"><b id="prop-title">Proposer un compte</b></p>
+    <p class="dlg-sub" id="prop-sub"></p>
+    <label class="field"><span>Nom affiché</span>
+      <input id="q-nom" maxlength="60" autocomplete="off" placeholder="Ex. Jordan Bardella" required>
+    </label>
+    <div class="field"><span>Compte</span>
+      <div class="field-row">
+        <select id="q-reseau" aria-label="Réseau social"></select>
+        <input id="q-handle" aria-label="Identifiant ou lien du compte" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="@identifiant ou lien">
+      </div>
+    </div>
+    <label class="field"><span>Catégorie</span><select id="q-type"></select></label>
+    <p class="form-err" id="q-err" role="alert"></p>
+    <div class="dlg-actions">
+      <button type="button" class="btn ghost" id="q-cancel">Annuler</button>
+      <button type="submit" class="btn dark">Envoyer</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="code" class="form-dlg">
+  <p class="dlg-title"><b>Code de sauvegarde</b></p>
+  <p class="dlg-sub">Ce code garde tes progrès (blocages, suivis, pseudo). Note-le&nbsp;: il te permet de les retrouver sur un autre téléphone, ou dans l’appli installée. Ne le partage avec personne.</p>
+  <div class="code-box"><code id="code-val"></code><button type="button" class="btn ghost small" id="code-copy">Copier</button></div>
+  <label class="field"><span>Tu as déjà un code&nbsp;? Colle-le ici</span>
+    <div class="field-row"><input id="code-in" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="xxxx-xxxx-…"><button type="button" class="btn dark small" id="code-use">Récupérer</button></div>
+  </label>
+  <p class="form-err" id="code-err" role="alert"></p>
+  <button type="button" class="btn ghost wide" id="code-close">Fermer</button>
+</dialog>
+
+<dialog id="install-ask">
+  <div class="help-icon"><img src="icons/logo-192.png" alt="" width="64" height="64"></div>
+  <p class="dlg-title"><b>Installe l’appli pour garder tes progrès</b></p>
+  <p class="dlg-sub">Ton compteur, tes suivis et ta place au classement restent avec toi, à un geste de ton écran d’accueil.</p>
+  <p class="dlg-sub ios-only" id="ios-note" hidden>Sur iPhone, l’appli installée démarre vide&nbsp;: copie d’abord ton code de sauvegarde, puis colle-le dans l’appli (bouton de ton pseudo, en haut).</p>
+  <button type="button" class="btn ghost small" id="ios-copy" hidden>Copier mon code</button>
+  <div class="dlg-actions">
+    <button type="button" class="btn ghost" id="ia-later">Plus tard</button>
+    <button type="button" class="btn dark" id="ia-go">Installer</button>
+  </div>
+</dialog>
+
+<dialog id="merci" class="merci-dlg">
+  <p class="merci-kicker" id="merci-kicker">Tu fais partie des plus engagés</p>
+  <p class="dlg-title"><b id="merci-title">Merci&nbsp;!</b></p>
+  <p class="merci-sec">Ton bilan</p>
+  <div class="merci-stats" id="merci-perso"></div>
+  <p class="merci-sec">Ensemble, avec l’appli</p>
+  <ul class="merci-tous" id="merci-tous"></ul>
+  <p class="dlg-sub">L’appli est gratuite, sans pub et faite bénévolement. Si tu veux qu’elle continue, tu peux soutenir le projet.</p>
+  <div class="dlg-actions">
+    <button type="button" class="btn ghost" id="merci-later">Plus tard</button>
+    <a class="btn red" id="merci-don" href="https://www.onparticipe.fr/c/Iw8uvKSc" target="_blank" rel="noopener">♥ Soutenir le projet</a>
+  </div>
+</dialog>
+
+<dialog id="install-help">
+  <div class="help-icon"><img src="icons/logo-192.png" alt="" width="64" height="64"></div>
+  <p class="dlg-title"><b>Installer l’appli</b></p>
+  <ol class="help-steps" id="help-steps"></ol>
+  <button class="btn dark" id="help-ok">Compris</button>
+</dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="comptes.js"></script>
+<script src="greenlist.js"></script>
+<script src="app.js"></script>
+<script src="maj.js"></script>
+</body>
+</html>
